@@ -1,4 +1,7 @@
-# ML Models
+REATE OR REPLACE VIEW `{{ project_id_tgt }}.{{ dataset_models_tgt }}.retail_recommender`
+AS
+SELECT 'See instructions in code' as Material 
+ from {{ project_id_tgt }}.{{ dataset_reporting_tgt }}.MaterialsMD LIMIT 1# ML Models
 
 ML Models for Cortex
 

@@ -14,20 +14,25 @@
 
 CREATE OR REPLACE VIEW `{{ project_id_tgt }}.{{ dataset_models_tgt }}.retail_recommender`
 AS
-SELECT
-  CONCAT(fullVisitorID, '-', CAST(visitNumber AS STRING), '-', CAST(hitNumber AS STRING))
-  AS visitorId_session_hit,
-  LEAD(time, 1)
-  OVER (
-    PARTITION BY CONCAT(fullVisitorID, '-', CAST(visitNumber AS STRING))
-    ORDER BY
-      time ASC
-  )
-  - time AS pageview_duration
-FROM
-  `bigquery-public-data.google_analytics_sample.ga_sessions*`,  --noqa: L057
-  UNNEST(hits) AS hit
--- -- This model requires Training Matrix Factorization reservations to be available.
+SELECT 'See instructions in code' as Material 
+ from {{ project_id_tgt }}.{{ dataset_reporting_tgt }}.MaterialsMD LIMIT 1
+
+-- -- The sample dataset bigquery-public-data.google_analytics_sample.ga_sessions* is only available in the US. 
+-- -- You can make a manual copy into your region if needed. Uncomment and re-execute after making the dataset available.
+-- SELECT
+--   CONCAT(fullVisitorID, '-', CAST(visitNumber AS STRING), '-', CAST(hitNumber AS STRING))
+--   AS visitorId_session_hit,
+--   LEAD(time, 1)
+--   OVER (
+--     PARTITION BY CONCAT(fullVisitorID, '-', CAST(visitNumber AS STRING))
+--     ORDER BY
+--       time ASC
+--   )
+--   - time AS pageview_duration
+-- FROM
+--   `bigquery-public-data.google_analytics_sample.ga_sessions*`,  --noqa: L057
+--   UNNEST(hits) AS hit
+-- -- This model requires Training Matrix Factorization reservations to be available and a Google Analytics dataset. 
 -- -- Enable the reservation for your project and deploy the following code:
 -- CREATE OR REPLACE MODEL `{{ project_id_tgt }}.{{ dataset_models_tgt }}.retail_recommender`
 -- OPTIONS(model_type='matrix_factorization',
