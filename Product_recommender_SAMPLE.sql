@@ -14,10 +14,11 @@
 
 CREATE OR REPLACE VIEW `{{ project_id_tgt }}.{{ dataset_models_tgt }}.retail_recommender`
 AS
-SELECT 'See instructions in code' as Material 
- from {{ project_id_tgt }}.{{ dataset_reporting_tgt }}.MaterialsMD LIMIT 1
+SELECT 'See instructions in code' AS Material
+FROM `{{ project_id_tgt }}.{{ dataset_reporting_tgt }}.MaterialsMD` LIMIT 1
 
--- -- The sample dataset bigquery-public-data.google_analytics_sample.ga_sessions* is only available in the US. 
+-- ##CORTEX-CUSTOMER
+-- -- The sample dataset bigquery-public-data.google_analytics_sample.ga_sessions* is only available in the US.
 -- -- You can make a manual copy into your region if needed. Uncomment and re-execute after making the dataset available.
 -- SELECT
 --   CONCAT(fullVisitorID, '-', CAST(visitNumber AS STRING), '-', CAST(hitNumber AS STRING))
@@ -32,7 +33,7 @@ SELECT 'See instructions in code' as Material
 -- FROM
 --   `bigquery-public-data.google_analytics_sample.ga_sessions*`,  --noqa: L057
 --   UNNEST(hits) AS hit
--- -- This model requires Training Matrix Factorization reservations to be available and a Google Analytics dataset. 
+-- -- This model requires Training Matrix Factorization reservations to be available and a Google Analytics dataset.
 -- -- Enable the reservation for your project and deploy the following code:
 -- CREATE OR REPLACE MODEL `{{ project_id_tgt }}.{{ dataset_models_tgt }}.retail_recommender`
 -- OPTIONS(model_type='matrix_factorization',
@@ -88,7 +89,7 @@ SELECT 'See instructions in code' as Material
 --         SUM(p.pageview_duration) AS session_duration
 --       FROM
 --         prodview_durations as p
---       -- JOIN {{ project_id_tgt }}.{{ dataset_reporting_tgt }}.MaterialsMD as m
+--       -- JOIN `{{ project_id_tgt }}.{{ dataset_reporting_tgt }}.MaterialsMD` as m
 --       -- ON p.itemId = m.MaterialNumber_MATNR
 --       -- WHERE m.Client_MANDT = '{{ mandt }}'
 --       -- AND m.Language_SPRAS = 'E'
