@@ -4,6 +4,7 @@
 # Help Message
 #--------------------
 
+
 usage() {
   cat <<HELP_USAGE
 
@@ -18,9 +19,9 @@ Options
 -x | cdc-processed-dataset      : Source Dataset Name. Mandatory
 -y | raw-landing-dataset        : Raw Landing Dataset Name.
 -r | target-reporting-dataset   : Target Dataset Name for Reporting (Default: SAP_REPORTING)
--s | target-models-dataset      : Target Dataset Name for ML (Default: ML_MODELS) 
+-s | target-models-dataset      : Target Dataset Name for ML (Default: ML_MODELS)
 -l | location                   : Dataset Location (Default: US)
--m | mandt                      : SAP Mandante 
+-m | mandt                      : SAP Mandante
 -f | sql-flavour                : SQL Flavor Selection, ECC or S4. (Default: ECC)
 
 HELP_USAGE

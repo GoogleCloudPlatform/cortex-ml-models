@@ -20,11 +20,10 @@ logsBucket: "gs://$_GCS_BUCKET"
 timeout: 7200s
 substitutions:
   _VIEWS_DIR: src/views
-  _MANDT: "800"
-  _TEST_DATA: "false"
+  _MANDT: "100"
   _LOCATION: "US"
-  _DS_REPORTING: "SAP_REPORTING"
-  _DS_MODELS: "SAP_ML_MODELS"
+  _DS_REPORTING: "REPORTING"
+  _DS_MODELS: "ML_MODELS"
   _SQL_FLAVOUR: "ECC"
 options:
   substitution_option: "ALLOW_LOOSE"
