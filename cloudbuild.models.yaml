@@ -1,22 +1,20 @@
 # gcloud builds submit --config=cloudbuild.yaml .
 steps:
   - name: gcr.io/cloud-builders/gcloud
-    entrypoint: "bash"
-    args:
-      - "-c"
-      - |-
-        ./deploy.sh \
-          --source-project '${_PJID_SRC}' \
-          --target-project '${_PJID_TGT}' \
-          --cdc-processed-dataset '${_DS_CDC}' \
-          --raw-landing-dataset '${_DS_RAW}' \
-          --target-reporting-dataset '${_DS_REPORTING}' \
-          --target-models-dataset '${_DS_MODELS}' \
-          --location '${_LOCATION}' \
-          --mandt '${_MANDT}' \
-          --sql-flavour '${_SQL_FLAVOUR}' \
-            '${_VIEWS_DIR}'
-logsBucket: "gs://$_GCS_BUCKET"
+    script: |
+      #!/usr/bin/env bash
+      ./deploy.sh \
+        --source-project ${_PJID_SRC} \
+        --target-project ${_PJID_TGT} \
+        --cdc-processed-dataset ${_DS_CDC} \
+        --raw-landing-dataset ${_DS_RAW} \
+        --target-reporting-dataset ${_DS_REPORTING} \
+        --target-models-dataset ${_DS_MODELS} \
+        --location ${_LOCATION} \
+        --mandt ${_MANDT} \
+        --sql-flavour ${_SQL_FLAVOUR} \
+          ${_VIEWS_DIR}
+logsBucket: "gs://${_GCS_BUCKET}"
 timeout: 7200s
 substitutions:
   _VIEWS_DIR: src/views
@@ -27,3 +25,4 @@ substitutions:
   _SQL_FLAVOUR: "ECC"
 options:
   substitution_option: "ALLOW_LOOSE"
+  automapSubstitutions: true

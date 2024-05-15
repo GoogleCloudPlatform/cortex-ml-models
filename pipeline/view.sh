@@ -4,7 +4,6 @@
 # Help Message
 #--------------------
 
-
 usage() {
   cat <<HELP_USAGE
 
